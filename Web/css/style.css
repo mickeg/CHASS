@@ -1,0 +1,7 @@
+html {
+    background: #FFF; /* fallback for old browsers */
+}
+
+#container{
+    width: 850px;
+}
