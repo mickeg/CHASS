@@ -8,20 +8,22 @@
     
     <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/testdata.js"></script>
     
 </head>
 <body>  
 <h1>H4S</h1>
 <div class="wrapper">
+<div id="result">
+test
+</div>
 
-    <p>Click the button to get your coordinates.</p>
-
-<button onclick="getLocation()">Try It</button>
+<button onclick="getLocation()">Hämta koordinater</button>
 
 <p id="demo"></p>
 
 <script>
-var x = document.getElementById("demo");
+var x = document.getElementById("result");
 
 function getLocation() {
     if (navigator.geolocation) {
