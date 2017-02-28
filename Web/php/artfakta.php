@@ -10,14 +10,21 @@
 
     $listoftaxons = [6010265, 216215, 100146, 100147, 212363, 102146, 209467, 100149, 100150, 103788, 206118, 215543, 215544, 215957, 215956, 100151, 100152, 106462, 106463, 213487, 100154, 257383, 106370, 106371, 103046, 253680, 105944, 100155];
 
+    $writeToFile = array();
+
     createFile();
     getTaxonDescription($t); //blåmussla
 
-    for ($i = 0; $i <= count($listoftaxons); $i++) {
-        getTaxonDescription($listoftaxons[$i]);
-        echo $i;
-    } 
+    
+    foreach($listoftaxons as $taxon){
+        echo getTaxonDescription($taxon);
+    }
 
+    foreach($writeToFile as $line){
+        echo $line;
+    }
+    
+    
     function getTaxonDescription($t){
         $GLOBALS['doc']->loadHTMLFile('http://artfakta.artdatabanken.se/taxon/'.$t);
         $xpath = new DOMXPath($GLOBALS['doc']);
@@ -25,9 +32,10 @@
         $entries = $xpath->query($query);
         $r = $entries->item(0)->textContent;
         $r_utf8 = utf8_decode($r);
-        $result = trim(preg_replace('/\s+/', ' ', $r_utf8));
-        writeLineToFile(unicodeString($t) .';'. unicodeString($result));
-        echo utf8_decode(unicodeString($t) .';'. unicodeString($result));
+        $result = $r_utf8;//trim(preg_replace('/\s+/', ' ', $r_utf8));  //Tar bort pga. prestanda
+        //writeLineToFile(unicodeString($t) .';'. unicodeString($result));  //Prestanda
+        //echo utf8_decode(unicodeString($t) .';'. unicodeString($result));
+        return unicodeString($t) .';'. unicodeString($result);
     }
 
     function createFile(){
