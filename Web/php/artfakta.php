@@ -13,7 +13,7 @@
 
     run($listoftaxons);
 
-    function run(){
+    function run($listoftaxons){
         scrapeDescriptionFromArtfakta($listoftaxons);
         scrapeImagesFromArtportalen($listoftaxons);
     }
