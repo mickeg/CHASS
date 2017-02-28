@@ -14,7 +14,7 @@
     run($listoftaxons);
 
     function run($listoftaxons){
-        scrapeDescriptionFromArtfakta($listoftaxons);
+        //scrapeDescriptionFromArtfakta($listoftaxons);
         scrapeImagesFromArtportalen($listoftaxons);
     }
 
@@ -28,6 +28,7 @@
         $url="http://www.artportalen.se/Media/Taxon/".$taxon;
         $prefix = "http://www.artportalen.se";
         $html = file_get_contents($url);
+        $MAX_FILES = 5;
 
         $doc = new DOMDocument();
         @$doc->loadHTML($html);
@@ -40,6 +41,8 @@
             $dirpath = realpath(dirname(getcwd()));
             copy($imageurl, $dirpath.'/php/img/'.$taxon.'_'.$i.'.jpg');
             $i++;
+            if($i > $MAX_FILES)
+                break;  //Ladda inte ner ALLA bilder...
         }
     }
     
