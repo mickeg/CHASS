@@ -6,19 +6,42 @@ $( document ).ready(function() {
 
     function init(){
         console.log('ready');
-        ajaxLoad();
+        ajaxLoadWeather();
+        ajaxLoadImages();
     }
 
+    function ajaxLoadImages(){
+        $.support.cors = true;
+        $.ajax({
+            url: 'http://127.0.0.1:8080/imageDirectory',
+            dataType: "html",
+            success: function(data) {
+                //console.log(data)
+                doStuffWithImages(JSON.parse(data));
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log('error ' + textStatus + " " + errorThrown);
+            }
+        });
+    }
 
-    
-    function ajaxLoad(){
+    function doStuffWithImages(images){
+        console.log( images.constructor === Array  );
+        
+        $.each(images, function( index, value ) {
+            var imagepath="<img src='http://127.0.0.1:8080/"+value+"'>";
+            console.log(imagepath);
+            $("#result").append(imagepath);
+        });
+    }
+
+    function ajaxLoadWeather(){
         $.support.cors = true;
         $.ajax({
             url: 'http://opendata-download-metanalys.smhi.se/api/category/mesan1g/version/1/geotype/point/lon/17.9799/lat/59.3830/data.json',
             dataType: "json",
             success: function(data) {
                 parseWeather(data)
-                //console.log('success', data);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log('error ' + textStatus + " " + errorThrown);
