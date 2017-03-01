@@ -13,14 +13,18 @@
 </head>
 <body>  
 <h1>H4S</h1>
-<div class="wrapper">
-<div id="result">
 
-</div>
-
-<button onclick="getLocation()">Hämta koordinater</button>
+<div ng-app="Chass">
+    <div ng-controller="ImageController">
+        <div ng-repeat="img in image.src">
+            <img ng-src="{{img}}" />
+        </div>
+    </div>
     
+    </div>
 </div>
 
+<script type="text/javascript" src="js/angular.js"></script>
+<script type="text/javascript" src="js/controllers.js"></script>
 </body>
 </html>
