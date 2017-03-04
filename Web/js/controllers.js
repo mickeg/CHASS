@@ -1,6 +1,9 @@
 var app = angular.module('Chass',[]);
 
 app.controller('ImageController', function($scope){
+
+    //Avkommentera för att loopa igenom.
+    /*
     
     $scope.image = {
         taxonId: 100146,
@@ -13,4 +16,5 @@ app.controller('ImageController', function($scope){
                 'http://127.0.0.1:8080/image?taxonId=100146&image=4'
             ]
     }
+    */
 });

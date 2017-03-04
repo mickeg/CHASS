@@ -5,10 +5,55 @@ $( document ).ready(function() {
     init();
 
     function init(){
+        initSelectors();
         console.log('ready');
         ajaxLoadWeather();
-        ajaxLoadImages();
+        //ajaxLoadImages();
+        //ajaxLoadObservationsCSV();
     }
+
+    function initSelectors(){
+        $("#clickimages").click(function(){
+            $("#result").empty();
+            console.log("images");
+            ajaxLoadImages();
+        });
+
+        $("#clickobservations").click(function(){
+            $("#result").empty();
+            console.log("observations");
+            ajaxLoadObservationsCSV();
+        });
+    }
+
+    function ajaxLoadObservationsCSV(){
+        $.support.cors = true;
+        $.ajax({
+            url: 'http://127.0.0.1:8080/csv',
+            dataType: "json",
+            crossDomain: true,
+            success: function(data) {
+                //console.log(data)
+                doStuffWithObservations(data);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log('error ' + textStatus + " " + errorThrown);
+            }
+        });
+    }
+
+    function doStuffWithObservations(observations){
+        $.each(observations, function( index, value ) {
+            //var imagepath="<img src='http://127.0.0.1:8080/"+value+"'>";
+            //console.log(value);
+            //$("#result").append(value);
+            $("#result").append(observations[index]["Id;Taxonsorteringsordning;Valideringsstatus;Rödlistekategori;Artnamn;Vetenskapligt namn;Auktor;Antal;Enhet;Ålder/stadium;Kön;Aktivitet;Längd;Vikt;Metod;Huvudlokal;Lokalnamn;Ostkoordinat;Nordkoordinat;Noggrannhet;Län;Kommun;Landskap;Församling;Externid;Startdatum;Starttid;Slutdatum;Sluttid;Kommentar;Ej återfunnen;Osäker artbestämning;Bestämningsmetod;Ospontan;Biotop;Biotopbeskrivning;Substrat;Vetenskapligt Substratnamn;Beskrivning;Substrat;Antal substrat;Substratbeskrivning;Djup min;Djup max;Höjd min;Höjd max;Publik samling;Privat samling;Samlingsnummer;Samlingsbeskrivning;Artbestämd av;Bestämningsår;Bekräftad av;Bekräftelseår;Redigeringsansvarig;Rapportör;Observatörer"]);
+
+        });
+        console.log(observations[0]);
+    }
+
+
 
     function ajaxLoadImages(){
         $.support.cors = true;
