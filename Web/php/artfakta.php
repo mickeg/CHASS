@@ -33,8 +33,9 @@
     }
 
     function downloadImage($taxon){
-        $url="http://www.artportalen.se/Media/Taxon/".$taxon;
+        
         $prefix = "http://www.artportalen.se";
+        $url = $prefix."/Media/Taxon/".$taxon;
         $html = file_get_contents($url);
         $MAX_FILES = 5;
 
