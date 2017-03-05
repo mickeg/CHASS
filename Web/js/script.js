@@ -47,10 +47,37 @@ $( document ).ready(function() {
             //var imagepath="<img src='http://127.0.0.1:8080/"+value+"'>";
             //console.log(value);
             //$("#result").append(value);
-            $("#result").append(observations[index]["Id;Taxonsorteringsordning;Valideringsstatus;Rödlistekategori;Artnamn;Vetenskapligt namn;Auktor;Antal;Enhet;Ålder/stadium;Kön;Aktivitet;Längd;Vikt;Metod;Huvudlokal;Lokalnamn;Ostkoordinat;Nordkoordinat;Noggrannhet;Län;Kommun;Landskap;Församling;Externid;Startdatum;Starttid;Slutdatum;Sluttid;Kommentar;Ej återfunnen;Osäker artbestämning;Bestämningsmetod;Ospontan;Biotop;Biotopbeskrivning;Substrat;Vetenskapligt Substratnamn;Beskrivning;Substrat;Antal substrat;Substratbeskrivning;Djup min;Djup max;Höjd min;Höjd max;Publik samling;Privat samling;Samlingsnummer;Samlingsbeskrivning;Artbestämd av;Bestämningsår;Bekräftad av;Bekräftelseår;Redigeringsansvarig;Rapportör;Observatörer"]);
+            
 
+            $("#result").append(observations[index].Artnamn + "</br>");
+            $("#result").append(observations[index].Antal +" st.</br>");
+            $("#result").append("Koordinater: "+observations[index].Nordkoordinat + " Nord, ");
+            $("#result").append(observations[index].Ostkoordinat+" Ost </br>");
+            var wgs84 = ajaxLookupWGS84(999, 999);
+            console.log(wgs84);
+            //$("#result").append("WGS84: " +wgs84);
+            //console.log(ajaxLookupWGS84(observations[index].Nordkoordinat, observations[index].Ostkoordinat));
+            $("#result").append(observations[index]["Vetenskapligt namn"] +"</br>");
+            $("#result").append(observations[index].Kommun+" Kommun");
+            $("#result").append("</br></br>");
+            //console.log(observations[index]);
         });
-        console.log(observations[0]);
+    }
+
+    function ajaxLookupWGS84(X, Y){
+        $.support.cors = true;
+        $.ajax({
+            url: 'http://127.0.0.1:8080/convert?X='+X+'&Y='+Y,
+            dataType: "json",
+            success: function(data) {
+                //return data;
+                console.log(data)
+                //doStuffWithImages(JSON.parse(data));
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log('error ' + textStatus + " " + errorThrown);
+            }
+        });
     }
 
 
@@ -108,3 +135,4 @@ $( document ).ready(function() {
     }
 
 });
+

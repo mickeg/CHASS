@@ -5,3 +5,8 @@ html {
 #container{
     width: 850px;
 }
+
+.menu{
+    color: blue;
+    cursor: pointer;
+}
