@@ -24,7 +24,51 @@ $( document ).ready(function() {
             console.log("observations");
             ajaxLoadObservationsCSV();
         });
+
+        $("#clickdemo").click(function(){
+            $("#result").empty();
+            console.log("demo");
+            ajaxLoadDemo();
+        });
+
+        $("#whatisthis").click(function(){
+            $("#result").empty();
+            console.log("what is this?");
+             $("#result").append("Vad ser du? <select name='cars'><option value='volvo'>Fågel</option><option value='saab'>Skalbagge</option><option value='fiat'>Fisk</option></select>");
+        });
     }
+
+    function ajaxLoadDemo(){
+        $.support.cors = true;
+        $.ajax({
+            url: 'http://127.0.0.1:8080/testdata',
+            dataType: "json",
+            crossDomain: true,
+            success: function(data) {
+                console.log(data)
+                doStuffWithDemoData(data);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log('error ' + textStatus + " " + errorThrown);
+            }
+        });
+    }
+
+    function doStuffWithDemoData(demodata){ 
+        $.each(demodata, function( index, value ) {
+            $("#result").append(demodata[index].NAMN + "</br>");
+            $("#result").append(demodata[index].TaxonID + "</br>");
+            $("#result").append("<img src='http://127.0.0.1:8080/"+demodata[index].TaxonID+"_1.jpg'>");
+            $("#result").append("<img src='http://127.0.0.1:8080/"+demodata[index].TaxonID+"_2.jpg'>");
+            $("#result").append("<img src='http://127.0.0.1:8080/"+demodata[index].TaxonID+"_3.jpg'>" + "</br>");
+            $("#result").append(demodata[index].Kännetecken.Artfakta + "</br>");
+            //$("#result").append(demodata[index].NAMN + "</br>");
+            //$("#result").append(demodata[index].NAMN + "</br>");
+            $("#result").append("</br>");
+            console.log(value);
+        });
+    }
+
 
     function ajaxLoadObservationsCSV(){
         $.support.cors = true;
