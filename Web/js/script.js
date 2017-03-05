@@ -34,7 +34,7 @@ $( document ).ready(function() {
         $("#whatisthis").click(function(){
             $("#result").empty();
             console.log("what is this?");
-             $("#result").append("Vad ser du? <select name='cars'><option value='volvo'>Fågel</option><option value='saab'>Skalbagge</option><option value='fiat'>Fisk</option></select>");
+             $("#result").append("Vad ser du? <select name='organismgrupper'><option value='fågel'>Fågel</option><option value='skalbagge'>Skalbagge</option><option value='fisk'>Fisk</option></select>");
         });
     }
 
