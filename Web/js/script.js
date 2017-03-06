@@ -54,7 +54,7 @@ $( document ).ready(function() {
             dataType: "json",
             crossDomain: true,
             success: function(data) {
-                console.log(data)
+                //console.log(data)
                 doStuffWithDemoData(data);
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -73,36 +73,53 @@ $( document ).ready(function() {
             $("#result").append("<img src='http://127.0.0.1:8080/"+demodata[index].TaxonID+"_3.jpg'>" + "</br>");
             $("#result").append(demodata[index].Kännetecken.Artfakta + "</br>");
             var textParam = parseText(demodata[index].Kännetecken.Artfakta);
-            console.log("tp:",textParam);
-            //colors:
+
             $("#result").append("<b>Parametrar</b></br>");
-            $("#result").append("Färger: </br>");
             
+            if(textParam.colors.length > 0){
+                $("#result").append("Färger: </br>");
+            }
+
             for(i=0;i<textParam.colors.length; i++){
                 $("#result").append("<div id='div1' style='display:inline;float:left; background-color:"+textParam.colors[i].hex+";width:20px'>&nbsp;</div>");
                 $("#result").append(textParam.colors[i].color);
                 $("#result").append("</br>");
             }
+            $("#result").append("</br>");
+
+            if(textParam.lengths.length > 0){
+                $("#result").append("Mått: </br>");
+            }
+
+            for(i=0;i<textParam.lengths.length; i++){
+                $("#result").append(textParam.lengths[i].measure);
+                $("#result").append("</br>");
+            }
 
             $("#result").append("</br>");
             
-            //console.log(value);
         });
     }
+
+    /*
+    Borde göra en för att bara hitta taggar som t.ex. "smal", "platt" osv...
+    */
 
     function parseText(s){
         TextParametrar = {};
         //console.log("parse "+s);
 
         var colors = findColors(s);
-        console.log("resultat",colors);
+        var lengths = findLengths(s);
+        //console.log("resultat",lengths);
+
         TextParametrar.colors = colors;
-        return TextParametrar;
+        TextParametrar.lengths = lengths;
+        return TextParametrar; 
 
     }
 
     function findColors(s){
-        //console.log("find colors "+s);
         listofcolors = [
             {color: "röd", hex: "#ff0000"}, 
             {color: "svart", hex: "#000"}, 
@@ -117,17 +134,39 @@ $( document ).ready(function() {
         resultcolors = [];
         for(i=0; i<listofcolors.length; i++){
             if(s.indexOf(listofcolors[i].color) > 0){
-                //console.log(i+": "+s.indexOf(listofcolors[i]));
                 var colorPos = s.indexOf(listofcolors[i].color);
                 var colorString = s.substr(colorPos);
                 var colorWord = colorString.substr(0, colorString.indexOf(' '));
                 var color = listofcolors[i];
-                //console.log(colorWord +" matchar: "+color);
                 resultcolors.push(color);
             }
         }
-        console.log("return:", resultcolors);
         return resultcolors;
+    }
+
+    function findLengths(s){
+        listofmeasurements = [
+            {measure: " mm "}, 
+            {measure: " cm "}, 
+            {measure: " dm "}, 
+            {measure: " m "}
+            //Dessa är lite svårare...
+            //{measure: "millimeter"}, 
+            //{measure: "centimeter"}, 
+            //{measure: "decimeter"}, 
+            //{measure: "meter"}
+        ];
+        resultmeasurements = [];
+        for(i=0; i<listofmeasurements.length; i++){
+            if(s.indexOf(listofmeasurements[i].measure) > 0){
+                var measurePos = s.indexOf(listofcolors[i].measure);
+                var measureString = s.substr(measurePos);
+                var measureWord = measureString.substr(0, measureString.indexOf(' '));
+                var measure = listofmeasurements[i];
+                resultmeasurements.push(measure);
+            }
+        }
+        return resultmeasurements;
     }
 
 
