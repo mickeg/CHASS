@@ -7,10 +7,19 @@ $( document ).ready(function() {
     function init(){
         initSelectors();
         console.log('ready');
-        ajaxLoadWeather();
+/*
+        var s = "Lövskogslöparen har svarta täckvingar och en bred, nästan fyrkantig svart halssköld. Dess kroppslängd är 18 till 22 millimeter och detta, i kombination med dess kraftiga ben och breda halssköld, ger den ett ganska robust utseende.";
+        var s = "En påfallande långsmal och platt skalbagge som blir 12–14 mm lång. Honan är försedd med ett långt äggläggningsrör. Antennerna är mycket långa, hos hanen blir de två gånger längre än resten av kroppen. Färgen är svart med en tät grå behåring som på täckvingarna bildar två tvärband.";
+        
+        parseText(s);
+
+*/
+        //ajaxLoadWeather();
         //ajaxLoadImages();
         //ajaxLoadObservationsCSV();
     }
+
+    
 
     function initSelectors(){
         $("#clickimages").click(function(){
@@ -35,7 +44,7 @@ $( document ).ready(function() {
             $("#result").empty();
             console.log("what is this?");
              $("#result").append("Vad ser du? <select name='organismgrupper'><option value='fågel'>Fågel</option><option value='skalbagge'>Skalbagge</option><option value='fisk'>Fisk</option></select>");
-        });
+        })
     }
 
     function ajaxLoadDemo(){
@@ -54,6 +63,7 @@ $( document ).ready(function() {
         });
     }
 
+    
     function doStuffWithDemoData(demodata){ 
         $.each(demodata, function( index, value ) {
             $("#result").append(demodata[index].NAMN + "</br>");
@@ -62,11 +72,62 @@ $( document ).ready(function() {
             $("#result").append("<img src='http://127.0.0.1:8080/"+demodata[index].TaxonID+"_2.jpg'>");
             $("#result").append("<img src='http://127.0.0.1:8080/"+demodata[index].TaxonID+"_3.jpg'>" + "</br>");
             $("#result").append(demodata[index].Kännetecken.Artfakta + "</br>");
-            //$("#result").append(demodata[index].NAMN + "</br>");
-            //$("#result").append(demodata[index].NAMN + "</br>");
+            var textParam = parseText(demodata[index].Kännetecken.Artfakta);
+            console.log("tp:",textParam);
+            //colors:
+            $("#result").append("<b>Parametrar</b></br>");
+            $("#result").append("Färger: </br>");
+            
+            for(i=0;i<textParam.colors.length; i++){
+                $("#result").append("<div id='div1' style='display:inline;float:left; background-color:"+textParam.colors[i].hex+";width:20px'>&nbsp;</div>");
+                $("#result").append(textParam.colors[i].color);
+                $("#result").append("</br>");
+            }
+
             $("#result").append("</br>");
-            console.log(value);
+            
+            //console.log(value);
         });
+    }
+
+    function parseText(s){
+        TextParametrar = {};
+        //console.log("parse "+s);
+
+        var colors = findColors(s);
+        console.log("resultat",colors);
+        TextParametrar.colors = colors;
+        return TextParametrar;
+
+    }
+
+    function findColors(s){
+        //console.log("find colors "+s);
+        listofcolors = [
+            {color: "röd", hex: "#ff0000"}, 
+            {color: "svart", hex: "#000"}, 
+            {color: "blå", hex: "#0000ff"}, 
+            {color: "grön", hex: "#00ff00"}, 
+            {color: "gul", hex: "#ffff00"}, 
+            {color: "vit", hex: "#fff"}, 
+            {color: "grå", hex: "#cccccc"}, 
+            {color: "orange", hex: "#ffa500"}, 
+            {color: "brun", hex: "#964b00"}
+        ];
+        resultcolors = [];
+        for(i=0; i<listofcolors.length; i++){
+            if(s.indexOf(listofcolors[i].color) > 0){
+                //console.log(i+": "+s.indexOf(listofcolors[i]));
+                var colorPos = s.indexOf(listofcolors[i].color);
+                var colorString = s.substr(colorPos);
+                var colorWord = colorString.substr(0, colorString.indexOf(' '));
+                var color = listofcolors[i];
+                //console.log(colorWord +" matchar: "+color);
+                resultcolors.push(color);
+            }
+        }
+        console.log("return:", resultcolors);
+        return resultcolors;
     }
 
 
