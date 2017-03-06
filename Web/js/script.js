@@ -87,12 +87,13 @@ $( document ).ready(function() {
             }
             $("#result").append("</br>");
 
+            console.log(textParam);
             if(textParam.lengths.length > 0){
                 $("#result").append("Mått: </br>");
             }
 
             for(i=0;i<textParam.lengths.length; i++){
-                $("#result").append(textParam.lengths[i].measure);
+                $("#result").append(textParam.lengths[i].measureAndValue);
                 $("#result").append("</br>");
             }
 
@@ -111,7 +112,7 @@ $( document ).ready(function() {
 
         var colors = findColors(s);
         var lengths = findLengths(s);
-        //console.log("resultat",lengths);
+        console.log("resultat",lengths);
 
         TextParametrar.colors = colors;
         TextParametrar.lengths = lengths;
@@ -146,11 +147,15 @@ $( document ).ready(function() {
 
     function findLengths(s){
         listofmeasurements = [
-            {measure: " mm "}, 
-            {measure: " cm "}, 
-            {measure: " dm "}, 
-            {measure: " m "}
-            //Dessa är lite svårare...
+            {measure: " mm ", measureText: "mm"},  //MeasureText för att inte få med "mm," t.ex.
+            {measure: " cm ", measureText: "cm"}, 
+            {measure: " dm ", measureText: "dm"}, 
+            {measure: " m ", measureText: "m"},
+            {measure: " mm, ", measureText: "mm"}, 
+            {measure: " cm, ", measureText: "cm"}, 
+            {measure: " dm, ", measureText: "dm"}, 
+            {measure: " m, ", measureText: "m"}
+            //Ta dessa i en separat funktion?
             //{measure: "millimeter"}, 
             //{measure: "centimeter"}, 
             //{measure: "decimeter"}, 
@@ -159,13 +164,17 @@ $( document ).ready(function() {
         resultmeasurements = [];
         for(i=0; i<listofmeasurements.length; i++){
             if(s.indexOf(listofmeasurements[i].measure) > 0){
-                var measurePos = s.indexOf(listofcolors[i].measure);
+                var measurePos = s.indexOf(listofmeasurements[i].measure);
                 var measureString = s.substr(measurePos);
+                var measureStringBefore = s.substr(measurePos-5);   //Magiskt nummer 5... backar vi 5 steg från mm "brukar" det vara t.ex. "12-20 "
                 var measureWord = measureString.substr(0, measureString.indexOf(' '));
+                var measureValue = measureStringBefore.replace(/[^0-9\–-]/g,''); //tar bort alla icke-numeriska tecken förutom varianter av "-".
                 var measure = listofmeasurements[i];
-                resultmeasurements.push(measure);
+                //resultmeasurements.push(measure);
+                resultmeasurements.push({measure:measure.measureText, value: measureValue, measureAndValue: measureValue + " " +measure.measureText});
             }
         }
+        console.log("resmeasu",resultmeasurements);
         return resultmeasurements;
     }
 
