@@ -1,5 +1,5 @@
 window.module = window.module || {}; 
-//en kommentar
+
 module.exports = {
     Testdata : [
         {
