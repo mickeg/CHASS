@@ -1,8 +1,27 @@
 html {
-    background: #FFF;
+    font-size:62.5%;
 }
 
-.menu{
+body {
+    background: #F7F7F7;
+    font-size: 1.6rem;
+}  
+
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Comfortaa', cursive;
+}
+
+.menu-item  {
+    margin-right: 2rem;
     color: blue;
     cursor: pointer;
+}
+
+.container {
+   margin: 5rem auto; 
+}
+
+/*Foundation overrides*/
+.row {
+    max-width: 100rem;
 }
