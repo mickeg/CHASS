@@ -2,3 +2,4 @@ node/node_modules/
 node_modules
 Web/js/angular.js
 *.jpg
+*.csv
