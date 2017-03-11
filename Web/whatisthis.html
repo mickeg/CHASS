@@ -14,7 +14,17 @@
 </head>
 <body>  
 <h1>what is this?</h1>
-<h4>Det finns <script>document.write(Testdata.length);</script> st arter i testdatat</h2>
+
+<script>$( document ).ready(function() {
+
+    for(i=0;i<Testdata.length;i++){
+        document.write(Testdata[i].Släktskap.Ordning_Text)
+        console.log(Testdata.length);
+    }
+});
+</script>
+
+
 
 <div id="wit_result">
     
