@@ -46,7 +46,7 @@ app.get('/filter', function (req, res) {
 
 app.get('/csv', function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    var inputFile = path.resolve(__dirname + '/Fåglar_2016-08-01_csv_comma.csv');
+    var inputFile = path.resolve(__dirname + '/kiruna_csv.csv');
     var filen = path.resolve(__dirname + '/test.csv');
     var test = {};
     var koordinater = [];
