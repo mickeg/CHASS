@@ -87,6 +87,15 @@ app.get('/testdata', function (req, res) {
 
 });
 
+app.get('/data', function (req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    var file = require("../js/data.json");
+
+    console.log(file.Data[1].Kännetecken.Artfakta);    
+    res.json(file.Data);
+
+});
+
 function convertToWGS84(X,Y){
     proj4.defs([
     ['WGS84', "+title=WGS 84 (long/lat) +proj=longlat +ellps=WGS84 +datum=WGS84 +units=degrees"],
