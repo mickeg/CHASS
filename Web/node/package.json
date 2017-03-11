@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/mickeg/H4S/issues"
   },
-  "homepage": "https://github.com/mickeg/H4S#readme"
+  "homepage": "https://github.com/mickeg/H4S#readme",
+    "devDependencies": {
+    "foundation-sites": "6.2.3"
+  }
 }
