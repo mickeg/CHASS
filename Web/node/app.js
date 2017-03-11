@@ -75,17 +75,12 @@ app.get('/convert', function (req, res) {
 
 app.get('/testdata', function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-
     var file = require("../js/testdata.js");
-    
-    
+
+    console.log(file.Testdata[1].Kännetecken.Artfakta);    
     res.send(file.Testdata);
 
 });
-
-
-
-
 
 function convertToWGS84(X,Y){
     proj4.defs([
@@ -104,3 +99,85 @@ function convertToWGS84(X,Y){
     //console.log("converting...");
     return result;
 }
+
+
+app.get('/update', function (req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    var file = require("../js/testdata.js");
+
+    var texten = file.Testdata[1].Kännetecken.Artfakta;
+    console.log(texten);   
+    var färger = parseText(texten); 
+    console.log(färger);
+    res.send(file.Testdata);
+
+});
+
+
+function parseText(s){
+        TextParametrar = {};
+        //console.log("parse "+s);
+
+        var colors = findColors(s);
+        var lengths = findLengths(s);
+        console.log("resultat",lengths);
+
+        TextParametrar.colors = colors;
+        TextParametrar.lengths = lengths;
+        console.log("HEJ", TextParametrar.colors);
+        return TextParametrar.colors; 
+
+    }
+
+    function findColors(s){
+        listofcolors = [
+            {color: "röd", hex: "#ff0000"}, 
+            {color: "svart", hex: "#000"}, 
+            {color: "blå", hex: "#0000ff"}, 
+            {color: "grön", hex: "#00ff00"}, 
+            {color: "gul", hex: "#ffff00"}, 
+            {color: "vit", hex: "#fff"}, 
+            {color: "grå", hex: "#cccccc"}, 
+            {color: "orange", hex: "#ffa500"}, 
+            {color: "brun", hex: "#964b00"}
+        ];
+        resultcolors = [];
+        for(i=0; i<listofcolors.length; i++){
+            if(s.indexOf(listofcolors[i].color) >= 0){
+                var colorPos = s.indexOf(listofcolors[i].color);
+                var colorString = s.substr(colorPos);
+                var colorWord = colorString.substr(0, colorString.indexOf(' '));
+                var color = listofcolors[i];
+                resultcolors.push(color);
+            }
+        }
+        return resultcolors;
+    }
+
+    function findLengths(s){
+        listofmeasurements = [
+            {measure: " mm ", measureText: "mm"},  //MeasureText för att inte få med "mm," t.ex.
+            {measure: " cm ", measureText: "cm"}, 
+            {measure: " dm ", measureText: "dm"}, 
+            {measure: " m ", measureText: "m"},
+            {measure: " mm, ", measureText: "mm"}, 
+            {measure: " cm, ", measureText: "cm"}, 
+            {measure: " dm, ", measureText: "dm"}, 
+            {measure: " m, ", measureText: "m"}
+        ];
+        resultmeasurements = [];
+        for(i=0; i<listofmeasurements.length; i++){
+            if(s.indexOf(listofmeasurements[i].measure) > 0){
+                var measurePos = s.indexOf(listofmeasurements[i].measure);
+                var measureString = s.substr(measurePos);
+                var measureStringBefore = s.substr(measurePos-5);   //Magiskt nummer 5... backar vi 5 steg från mm "brukar" det vara t.ex. "12-20 "
+                var measureWord = measureString.substr(0, measureString.indexOf(' '));
+                var measureValue = measureStringBefore.replace(/[^0-9\–-]/g,''); //tar bort alla icke-numeriska tecken förutom varianter av "-".
+                var measure = listofmeasurements[i];
+                //resultmeasurements.push(measure);
+                resultmeasurements.push({measure:measure.measureText, value: measureValue, measureAndValue: measureValue + " " +measure.measureText});
+            }
+        }
+        console.log("resmeasu",resultmeasurements);
+        return resultmeasurements;
+    }
