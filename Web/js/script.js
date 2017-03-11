@@ -86,7 +86,12 @@ $( document ).ready(function() {
     }
 
     function loadFilterView(html) {
+        var app = angular.module("myapp", []);
+        app.controller('FilterController', function($scope) {
+            $scope.category = '';
+        });
         $("#result").append(html);
+        angular.bootstrap($('#result'), ['myapp'])
     }
     
     function doStuffWithDemoData(demodata){ 

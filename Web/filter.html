@@ -1,3 +1,5 @@
+<div ng-app='myapp' ng-controller="FilterController">
+
 <div class="row align-center">
     <div class="columns small-12 medium-6 columns">
         <div class="section">
@@ -11,57 +13,97 @@
                     <option value="fladdermöss">Fladdermöss</option>
                     <option value="mossor">Mossor</option>
                 </select>-->
-                <select id="category">
-                    <option value="">Välj kategori</option>
+                <select id="category" ng-model="category" >
+                    <option  value="">Välj kategori</option>
                     <option value="däggdjur">Däggdjur</option>
-                    <option value="fåglar">Fåglar</option>
-                    <option value="leddjur">Leddjur (insekter, spindlar, mm)</option>
-                    <option value="växter">Växter</option>
-                    <option value="alger">Alger</option>
+                    <option  value="fåglar">Fåglar</option>
+                    <option  value="leddjur">Leddjur (insekter, spindlar, mm)</option>
+                    <option  value="växter">Växter</option>
+                    <option  value="alger">Alger</option>
                 </select>
             </label>
         </div>
     </div>
 </div>
 
-<h3>Filtrera</h3>
+<div ng-show="category!==''">
+    <h3>Filtrera</h3>
 
-<div class="row">
-   <div class="medium-6 columns">
-      <label>
-        <input type="text" placeholder="Sök">
-      </label>
-    </div>
-</div>
-
-
-<div class="row">
-    <div class="columns small-12 medium-6 columns">
-        <label>Färg
-            <select id="color">
-                <option value="">Välj färg</option>
-                <option value="svart">Svart</option>
-                <option value="brun">Brun</option>
-                <option value="gul">Gul</option>
-                <option value="röd">Röd</option>
-                <option value="orange">Orange</option>
-                <option value="vit">Vit</option>
-            </select>
+    <div class="row">
+    <div class="medium-6 columns">
+        <label>
+            <input type="text" placeholder="Sök">
         </label>
+        </div>
     </div>
 
-    <div class="columns small-12 medium-6 columns">
-        <label>Storlek
-            <select id="size">
-                <option value="">Välj storlek</option>
-                <option value="15">5-15mm</option>
-                <option value="25">16-25mm</option>
-                <option value="35">26-35mm</option>
-                <option value="45">36-45mm</option>
-                <option value="70">46-70mm</option>
-                <option value="150">71-150mm</option>
-            </select>
-        </label>
+    <!--Leddjur-->
+    <div class="row" ng-show="category=='leddjur'">
+        <div class="columns small-12 medium-6 columns">
+            <label>Färg
+                <select>
+                    <option value="">Välj färg</option>
+                    <option value="svart">Svart</option>
+                    <option value="brun">Brun</option>
+                    <option value="gul">Gul</option>
+                    <option value="röd">Röd</option>
+                    <option value="orange">Orange</option>
+                    <option value="vit">Vit</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="columns small-12 medium-6 columns">
+            <label>Storlek
+                <select id="size">
+                    <option value="">Välj storlek</option>
+                    <option value="15">5-15mm</option>
+                    <option value="25">16-25mm</option>
+                    <option value="35">26-35mm</option>
+                    <option value="45">36-45mm</option>
+                    <option value="70">46-70mm</option>
+                    <option value="150">71-150mm</option>
+                </select>
+            </label>
+        </div>
+    </div>
+
+    <!--Däggdjur-->
+    <div class="row" ng-show="category=='däggdjur'">
+        <div class="columns small-12 medium-6 columns">
+            <label>Huvudsaklig miljö
+                <select>
+                    <option value="">Välj miljö</option>
+                    <option value="land">Mark</option>
+                    <option value="vatten">Vatten</option>
+                    <option value="träd">Träd</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="columns small-12 medium-6 columns">
+            <label>Typ
+                <select>
+                    <option value="">Välj typ</option>
+                    <option value="rovdjur">Rovdjur</option>
+                    <option value="växtätare">Växtätare</option>
+                    <option value="allätare">Allätare</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="columns small-12 medium-6 columns">
+            <label>Storlek
+                <select>
+                    <option value="">Välj storlek</option>
+                    <option value="1">>1kg</option>
+                    <option value="25">1-3kg</option>
+                    <option value="35">4-7kg</option>
+                    <option value="45">8-15kg</option>
+                    <option value="70">16-25kg</option>
+                    <option value="150"><25kg</option>
+                </select>
+            </label>
         </div>
     </div>
 </div>
@@ -69,4 +111,6 @@
     <div class="columns clearfix">
         <a class="button large float-right" href="#">Sök</a>
     </div>
+</div>
+</div>
 </div>
