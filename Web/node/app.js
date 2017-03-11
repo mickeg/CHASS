@@ -90,10 +90,23 @@ app.get('/testdata', function (req, res) {
 app.get('/data', function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     var file = require("../js/data.json");
-
-    console.log(file.Data[1].Kännetecken.Artfakta);    
     res.json(file.Data);
 
+});
+
+app.get("/update", function (req, res) {
+    res.setHeader("Access-Control-Allow-Origin", '*');
+    fs.readFile('../js/data.json', function (err, data) {
+        data = JSON.parse(data);
+        var output = "";
+        for (var i = 0; i < data.Data.length; i++) {
+            output = output + "<br/><br/>" + data.Data[i].Kännetecken.Artfakta;
+            data.Data[i].Tags = parseTags(data.Data[i].Kännetecken.Artfakta);
+        }
+        var fileAsString = JSON.stringify(data);
+        fs.writeFile('../js/data.json', fileAsString, 'utf8', function (err, obj) { console.dir(obj) });
+        res.send("Data file updated with tags!");
+    });
 });
 
 function convertToWGS84(X,Y){
@@ -127,6 +140,14 @@ app.get('/update', function (req, res) {
 
 });
 
+function parseTags(s){
+    Tags = {};
+    var colors = findColors(s);
+    Tags.Färg = colors;
+    var lengths = findLengths(s);
+    Tags.Längd = lengths;
+    return Tags;
+}
 
 function parseText(s){
         TextParametrar = {};
