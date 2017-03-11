@@ -136,7 +136,7 @@ $( document ).ready(function() {
         ];
         resultcolors = [];
         for(i=0; i<listofcolors.length; i++){
-            if(s.indexOf(listofcolors[i].color) > 0){
+            if(s.indexOf(listofcolors[i].color) >= 0){
                 var colorPos = s.indexOf(listofcolors[i].color);
                 var colorString = s.substr(colorPos);
                 var colorWord = colorString.substr(0, colorString.indexOf(' '));
