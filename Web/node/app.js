@@ -127,19 +127,6 @@ function convertToWGS84(X,Y){
     return result;
 }
 
-
-app.get('/update', function (req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    var file = require("../js/testdata.js");
-
-    var texten = file.Testdata[1].Kännetecken.Artfakta;
-    console.log(texten);   
-    var färger = parseText(texten); 
-    console.log(färger);
-    res.send(file.Testdata);
-
-});
-
 function parseTags(s){
     Tags = {};
     var colors = findColors(s);
