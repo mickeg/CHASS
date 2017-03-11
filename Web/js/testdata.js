@@ -25,6 +25,12 @@ module.exports = {
                 Wikipedia: "Mindre timmerman blir 9-12 millimeter lång, möjligen upp till 14 millimeter. Skalbaggen är långsmal, platt och gråspräcklig och har mycket långa antenner, betydligt längre än skalbaggens kropp. Särskilt långa är hanens antenner, de är minst två gånger så långa som kroppen, medan honans antenner är lite kortare, cirka en och en halv gång så långa som kroppen. De enskilda antennsegmenten är tvåfärgade, gråvita mot basen och mörka mot spetsen. Förutom längre antenner har hanen även lite längre ben än honan. Ett annat sätt att se skillnad på hane och hona är att honan vid bakkroppsspetsen har ett långt utstickande äggläggningsrör.",
                 Artfakta: "En påfallande långsmal och platt skalbagge som blir 12–14 mm lång. Honan är försedd med ett långt äggläggningsrör. Antennerna är mycket långa, hos hanen blir de två gånger längre än resten av kroppen. Färgen är svart med en tät grå behåring som på täckvingarna bildar två tvärband."
             },
+            Tags:[
+                {
+                    Färg: ["Svart", "Grön"], 
+                    Längd: ["12-43 mm"]
+                }
+            ],
             Observationer: [
                 { Position: { Latitude: 59.980721, Longitude: 17.250436 } },
                 { Position: { Latitude: 59.980637, Longitude: 17.250627 } },
