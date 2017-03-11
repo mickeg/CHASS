@@ -3,9 +3,8 @@
 <head>
     <meta charset="utf-8" />
 	<title>H4S.</title>
-	<link href="css/style.css" type="text/css" rel="stylesheet" />
-    <link href="css/bootstrap.min.css" rel="styleshet">
-    
+
+
     <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript" src="js/testdata.js"></script>
@@ -15,6 +14,7 @@
 <h1>H4S</h1>
 MENY
 <div class="menu">
+    <div class="small-6 columns">hejhej</div>
     <div class = "menubutton" id="clickimages">
         Bilder
     </div>
@@ -30,6 +30,15 @@ MENY
     <br>
 </div>
 
+<div class="row">
+  <div class="small-6 columns">6 columns</div>
+  <div class="small-6 columns">6 columns</div>
+</div>
+<div class="row">
+  <div class="medium-6 large-4 columns">12/6/4 columns</div>
+  <div class="medium-6 large-8 columns">12/6/8 columns</div>
+</div>
+
 <div ng-app="Chass">
     <div ng-controller="ImageController">
         <div ng-repeat="img in image.src">
@@ -43,7 +52,9 @@ MENY
 <div id="result">
 </div>
 
-<style src="../Web//node/node_modules/foundation-sites/dist/foundation-flex.css" type="text/css"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="styleshet" />
+    <link href="../Web//node/node_modules/foundation-sites/dist/foundation-flex.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="js/angular.js"></script>
 <script type="text/javascript" src="js/controllers.js"></script>
 </body>
