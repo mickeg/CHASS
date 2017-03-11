@@ -1,3 +1,4 @@
+window.module = window.module || {}; 
 module.exports = { //vi testar
     Testdata : [
         {
