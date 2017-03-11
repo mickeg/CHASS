@@ -93,5 +93,3 @@ module.exports = {
 
     ]
 };
-
-console.log("Testdata: ", Testdata);
