@@ -38,6 +38,11 @@ app.get('/imageDirectory', function (req, res) {
     })
 });
 
+app.get('/filter', function (req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    var filepath = path.resolve('../filter.html');
+    res.sendFile(filepath);
+});
 
 app.get('/csv', function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');

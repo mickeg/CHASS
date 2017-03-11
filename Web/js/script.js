@@ -40,6 +40,11 @@ $( document ).ready(function() {
             ajaxLoadDemo();
         });
 
+        $("#filter").click(function(){
+            $("#result").empty();
+            ajaxLoadFilter();
+        });
+
         /*
         $("#whatisthis").click(function(){
             $("#result").empty();
@@ -65,6 +70,24 @@ $( document ).ready(function() {
         });
     }
 
+    function ajaxLoadFilter(){
+        $.support.cors = true;
+        $.ajax({
+            url: 'http://127.0.0.1:8080/filter',
+            dataType: "html",
+            crossDomain: true,
+            success: function(html) {
+                loadFilterView(html);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log('error ' + textStatus + " " + errorThrown);
+            }
+        });
+    }
+
+    function loadFilterView(html) {
+        $("#result").append(html);
+    }
     
     function doStuffWithDemoData(demodata){ 
         $.each(demodata, function( index, value ) {
