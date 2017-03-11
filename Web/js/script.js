@@ -40,11 +40,13 @@ $( document ).ready(function() {
             ajaxLoadDemo();
         });
 
+        /*
         $("#whatisthis").click(function(){
             $("#result").empty();
             console.log("what is this?");
              $("#result").append("Vad ser du? <select name='organismgrupper'><option value='fågel'>Fågel</option><option value='skalbagge'>Skalbagge</option><option value='fisk'>Fisk</option></select>");
         })
+        */
     }
 
     function ajaxLoadDemo(){
@@ -255,8 +257,9 @@ $( document ).ready(function() {
         
         $.each(images, function( index, value ) {
             var imagepath="<img src='http://127.0.0.1:8080/"+value+"'>";
+            var path = 'http://127.0.0.1:8080/'+value;
             console.log(imagepath);
-            $("#result").append(imagepath);
+            $("#result").append('<a href='+path+'>'+imagepath+'</a>');
         });
     }
 

@@ -1,0 +1,19 @@
+{
+  "name": "h4s",
+  "version": "1.0.0",
+  "description": "dynamisk uppslagning av arter",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mickeg/H4S.git"
+  },
+  "author": "Team CHASS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mickeg/H4S/issues"
+  },
+  "homepage": "https://github.com/mickeg/H4S#readme"
+}
