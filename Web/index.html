@@ -8,54 +8,58 @@
     <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript" src="js/testdata.js"></script>
-    
 </head>
-<body>  
-<h1>H4S</h1>
-MENY
-<div class="menu">
-    <div class="small-6 columns">hejhej</div>
-    <div class = "menubutton" id="clickimages">
-        Bilder
-    </div>
-    <div class = "menubutton" id="clickobservations">
-        Observationer
-    </div>
-    <div class = "menubutton" id="clickdemo">
-        Demo
-    </div>
-    <div class = "menubutton" id="whatisthis">
-        <a href="whatisthis.html">Vad är det här?</a> 
-    </div>
-    <br>
-</div>
-
-<div class="row">
-  <div class="small-6 columns">6 columns</div>
-  <div class="small-6 columns">6 columns</div>
-</div>
-<div class="row">
-  <div class="medium-6 large-4 columns">12/6/4 columns</div>
-  <div class="medium-6 large-8 columns">12/6/8 columns</div>
-</div>
-
-<div ng-app="Chass">
-    <div ng-controller="ImageController">
-        <div ng-repeat="img in image.src">
-            <img ng-src="{{img}}" />
+<body>
+    <div class="row">
+        <div class="small-2 columns">
+            <h1>H4S</h1>
         </div>
     </div>
-    
+    <div class="row">
+        <div class="menu">
+            <div class="small-2 columns">
+                <div class = "menubutton" id="clickimages">
+                    Bilder
+                </div>
+            </div>
+            <div class="small-2 columns">
+                <div class = "menubutton" id="clickobservations">
+                    Observationer
+                </div>
+            </div>
+            <div class="small-2 columns">
+                <div class = "menubutton" id="clickdemo">
+                    Demo
+                </div>
+            </div>
+            <div class="small-2 columns">
+                <div class = "menubutton" id="whatisthis">
+                    <a href="whatisthis.html">Vad är det här?</a> 
+                </div>
+            </div>
+            <br>
+        </div>
     </div>
-</div>
 
-<div id="result">
-</div>
+    <div class="row">
+        <div class="columns">
+            <div ng-app="Chass">
+                <div ng-controller="ImageController">
+                    <div ng-repeat="img in image.src">
+                        <img ng-src="{{img}}" />
+                    </div>
+                </div>
+            </div>
+
+            <div id="result">
+            </div>
+        </div>
+    </div>
 
 	<link href="css/style.css" type="text/css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="styleshet" />
     <link href="../Web//node/node_modules/foundation-sites/dist/foundation-flex.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="js/angular.js"></script>
-<script type="text/javascript" src="js/controllers.js"></script>
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/controllers.js"></script>
 </body>
 </html>
