@@ -1,3 +1,5 @@
+window.module = window.module || {}; 
+
 module.exports = {
     Testdata : [
         {
