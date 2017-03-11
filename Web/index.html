@@ -10,55 +10,57 @@
     <script type="text/javascript" src="js/testdata.js"></script>
 </head>
 <body>
-    <div class="row">
-        <div class="small-2 columns">
-            <h1>H4S</h1>
+    <div class="container">
+        <div class="row">
+            <div class="columns">
+                <h1>H4S</h1>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="menu">
-            <div class="small-2 columns">
-                <div class = "menubutton" id="clickimages">
-                    Bilder
-                </div>
-            </div>
-            <div class="small-2 columns">
-                <div class = "menubutton" id="clickobservations">
-                    Observationer
-                </div>
-            </div>
-            <div class="small-2 columns">
-                <div class = "menubutton" id="clickdemo">
-                    Demo
-                </div>
-            </div>
-            <div class="small-2 columns">
-                <div class = "menubutton" id="whatisthis">
-                    <a href="whatisthis.html">Vad är det här?</a> 
-                </div>
-            </div>
-            <br>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="columns">
-            <div ng-app="Chass">
-                <div ng-controller="ImageController">
-                    <div ng-repeat="img in image.src">
-                        <img ng-src="{{img}}" />
+        <div class="row">
+            <div class="menu columns">
+                <div class="menu-item">
+                    <div class = "menubutton" id="clickimages">
+                        Bilder
                     </div>
                 </div>
+                <div class="menu-item">
+                    <div class = "menubutton" id="clickobservations">
+                        Observationer
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class = "menubutton" id="clickdemo">
+                        Demo
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class = "menubutton" id="whatisthis">
+                        <a href="whatisthis.html">Vad är det här?</a> 
+                    </div>
+                </div>
+                <br>
             </div>
+        </div>
 
-            <div id="result">
+        <div class="row">
+            <div class="columns">
+                <div ng-app="Chass">
+                    <div ng-controller="ImageController">
+                        <div ng-repeat="img in image.src">
+                            <img ng-src="{{img}}" />
+                        </div>
+                    </div>
+                </div>
+
+                <div id="result">
+                </div>
             </div>
         </div>
     </div>
 
-	<link href="css/style.css" type="text/css" rel="stylesheet" />
-    <link href="css/bootstrap.min.css" rel="styleshet" />
+    <link href="css/reset.css" rel="styleshet" />
     <link href="../Web//node/node_modules/foundation-sites/dist/foundation-flex.css" type="text/css" rel="stylesheet" />
+	<link href="css/style.css" type="text/css" rel="stylesheet" />
     <script type="text/javascript" src="js/angular.js"></script>
     <script type="text/javascript" src="js/controllers.js"></script>
 </body>

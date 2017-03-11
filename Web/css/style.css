@@ -1,8 +1,26 @@
 html {
-    background: #FFF;
+    font-size:62.5%;
 }
+
+body {
+    background: #F7F7F7;
+    font-size: 1.6rem; 
+}  
 
 .menu{
     color: blue;
     cursor: pointer;
+}
+
+.menu > .menu-item {
+    margin-right: 2rem;
+}
+
+.container {
+   margin: 5rem auto; 
+}
+
+/*Foundation overrides*/
+.row {
+    max-width: 100rem;
 }
