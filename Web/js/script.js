@@ -5,7 +5,8 @@ $( document ).ready(function() {
     init();
 
     function init(){
-        initSelectors();
+        //initSelectors();
+        ajaxLoadFilter();
         console.log('ready');
 /*
         var s = "Lövskogslöparen har svarta täckvingar och en bred, nästan fyrkantig svart halssköld. Dess kroppslängd är 18 till 22 millimeter och detta, i kombination med dess kraftiga ben och breda halssköld, ger den ett ganska robust utseende.";
