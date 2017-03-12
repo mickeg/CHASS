@@ -3,7 +3,7 @@
 <div class="row align-center">
     <div class="columns small-12 medium-6 columns">
         <div class="section">
-            <label>Kategori
+            <label>
                 <!--<select>
                     <option value="">Välj kategori</option>
                     <option value="insekter">Insekter</option>
@@ -67,6 +67,16 @@
                 </select>
             </label>
         </div>
+        <div class="columns small-12 medium-6 columns">
+            <label>Antal ben
+                <select id="legs">
+                    <option value="">Välj antal</option>
+                    <option value="15">6</option>
+                    <option value="25">8</option>
+                    <option value="35">>10</option>
+                </select>
+            </label>
+        </div>
     </div>
 
     <!--Däggdjur-->
@@ -97,18 +107,18 @@
             <label>Storlek
                 <select>
                     <option value="">Välj storlek</option>
-                    <option value="1">>1kg</option>
+                    <option value="1"><1kg</option>
                     <option value="25">1-3kg</option>
                     <option value="35">4-7kg</option>
                     <option value="45">8-15kg</option>
                     <option value="70">16-25kg</option>
-                    <option value="150"><25kg</option>
+                    <option value="150">>25kg</option>
                 </select>
             </label>
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row" ng-show="category!==''">
     <div class="columns clearfix">
         <a class="button large float-right" id="btnSearch" href="#">Sök</a>
     </div>
@@ -172,7 +182,7 @@ function searchData(data, cat, col, size){
     for(k=0; k < searchResult.length; k++){
         console.log("Skriver resultat");
         $("#searchResult").append(searchResult[k].NAMN + "</br>");
-        $("#searchResult").append(searchResult[k].TaxonID + "</br>");
+        //$("#searchResult").append(searchResult[k].TaxonID + "</br>");
         $("#searchResult").append("<img src='http://127.0.0.1:8080/"+searchResult[k].TaxonID+"_1.jpg'>");
         $("#searchResult").append("<img src='http://127.0.0.1:8080/"+searchResult[k].TaxonID+"_2.jpg'>");
         //$("#searchResult").append("<img src='http://127.0.0.1:8080/"+data[index].TaxonID+"_3.jpg'>" + "</br>");
