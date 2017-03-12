@@ -130,4 +130,65 @@
             ajaxLoadSearch(cat, col, size);
         });
     });
+
+
+function ajaxLoadSearch(cat, col, size){
+
+    $.support.cors = true;
+    $.ajax({
+        url: 'http://127.0.0.1:8080/testdata',
+        dataType: "json",
+        //crossDomain: true,
+        success: function(data) {
+            //console.log(data)
+            searchData(data, cat, col, size);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log('error ' + textStatus + " " + errorThrown);
+        }
+    });
+}
+
+function searchData(data, cat, col, size){
+    searchResult = [];
+    console.log("DATAT",data);
+    $.each(data, function( index, value ) {
+
+            for(j=0;j<data[index].Tags[0].Färg.length;j++){
+                console.log("sökte på", col);
+                console.log("färg i testdatat: "+ data[index].Tags[0].Färg[j]);
+                if(col === data[index].Tags[0].Färg[j]){
+                    searchResult.push(data[index]);
+                    console.log("länden:",searchResult.length);
+                    break;
+                }
+            }
+            
+         
+    });
+
+    console.log(searchResult);
+    
+    for(k=0; k < searchResult.length; k++){
+        console.log("Skriver resultat");
+        $("#searchResult").append(searchResult[k].NAMN + "</br>");
+        $("#searchResult").append(searchResult[k].TaxonID + "</br>");
+        $("#searchResult").append("<img src='http://127.0.0.1:8080/"+searchResult[k].TaxonID+"_1.jpg'>");
+        $("#searchResult").append("<img src='http://127.0.0.1:8080/"+searchResult[k].TaxonID+"_2.jpg'>");
+        //$("#searchResult").append("<img src='http://127.0.0.1:8080/"+data[index].TaxonID+"_3.jpg'>" + "</br>");
+        /*
+        //$("#searchResult").append(searchResult[index].Kännetecken.Artfakta + "</br>");
+        var link = "<a href='ShowDetails?ID="+data[index].TaxonID+"'></a>";
+        console.log(link);
+        $("#searchResult").append("<a href='ShowDetails?ID="+data[index].TaxonID+"'>Detailer</a> </br>");
+        //var textParam = parseText(searchResult[index].Kännetecken.Artfakta);
+        //var textParam = searchResult[index].Tags[index];
+        */
+        $("#searchResult").append("</br>");
+        $("#searchResult").append("</br>");  
+    }
+        
+      
+    
+}
 </script>
