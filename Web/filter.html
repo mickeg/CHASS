@@ -180,8 +180,10 @@ function searchData(data, cat, col, size){
         console.log("Skriver resultat");
         $("#searchResult").append("<h6>" + searchResult[k].NAMN + "</h6>");
         //$("#searchResult").append(searchResult[k].TaxonID + "</br>");
-        $("#searchResult").append("<img class='thumbnail search-result-img' src='http://127.0.0.1:8080/"+searchResult[k].TaxonID+"_1.jpg'>");
-        $("#searchResult").append("<img class='thumbnail search-result-img' src='http://127.0.0.1:8080/"+searchResult[k].TaxonID+"_2.jpg'>");
+        $("#searchResult").append("<div class='row'><div class='shrink columns'><img class='thumbnail search-result-img' src='http://127.0.0.1:8080/"+searchResult[k].TaxonID+"_1.jpg'><img class='thumbnail search-result-img' src='http://127.0.0.1:8080/"+searchResult[k].TaxonID+"_2.jpg'></div><div class='columns'><p>" + searchResult[k].Kännetecken.Artfakta + "</p></div>");
+        
+
+        
         //$("#searchResult").append("<img src='http://127.0.0.1:8080/"+data[index].TaxonID+"_3.jpg'>" + "</br>");
         /*
         //$("#searchResult").append(searchResult[index].Kännetecken.Artfakta + "</br>");
