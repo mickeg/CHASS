@@ -119,6 +119,15 @@
     $( document ).ready(function() {
         $("#btnSearch").click(function(){
             console.log("Searching...");
+            console.log("Searching...");
+            console.log("searched for ", $( "#category" ).val());
+            console.log("searched for ", $( "#color" ).val());
+            console.log("searched for ", $( "#size option:selected").text());
+            var cat = $( "#category" ).val();
+            var col = $( "#color" ).val();
+            var size = $( "#size option:selected").text();
+
+            ajaxLoadSearch(cat, col, size);
         });
     });
 </script>
