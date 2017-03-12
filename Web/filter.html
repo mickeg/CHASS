@@ -43,12 +43,12 @@
             <label>Färg
                 <select id="color">
                 <option value="">Välj färg</option>
-                <option value="Svart">Svart</option>
-                <option value="Brun">Brun</option>
-                <option value="Gul">Gul</option>
-                <option value="Röd">Röd</option>
-                <option value="Orange">Orange</option>
-                <option value="Vit">Vit</option>
+                <option value="svart">Svart</option>
+                <option value="brun">Brun</option>
+                <option value="gul">Gul</option>
+                <option value="röd">Röd</option>
+                <option value="orange">Orange</option>
+                <option value="vit">Vit</option>
 
                 </select>
             </label>
@@ -146,12 +146,11 @@ function ajaxLoadSearch(cat, col, size){
 
     $.support.cors = true;
     $.ajax({
-        url: 'http://127.0.0.1:8080/testdata',
-        dataType: "json",
+        url: 'http://127.0.0.1:8080/data',
+        dataType: "text",
         //crossDomain: true,
         success: function(data) {
-            //console.log(data)
-            searchData(data, cat, col, size);
+            searchData(JSON.parse(data), cat, col, size);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('error ' + textStatus + " " + errorThrown);
@@ -163,18 +162,15 @@ function searchData(data, cat, col, size){
     searchResult = [];
     console.log("DATAT",data);
     $.each(data, function( index, value ) {
-
-            for(j=0;j<data[index].Tags[0].Färg.length;j++){
+            for (j = 0; j < data[index].Tags.Färg.length; j++) {
                 console.log("sökte på", col);
-                console.log("färg i testdatat: "+ data[index].Tags[0].Färg[j]);
-                if(col === data[index].Tags[0].Färg[j]){
+                console.log("färg i testdatat: "+ data[index].Tags.Färg[j].color);
+                if(col == data[index].Tags.Färg[j].color){
                     searchResult.push(data[index]);
                     console.log("länden:",searchResult.length);
                     break;
                 }
             }
-            
-         
     });
 
     console.log(searchResult);
