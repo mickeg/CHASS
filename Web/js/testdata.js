@@ -61,6 +61,12 @@ module.exports = {
                 Wikipedia: "Lövskogslöparen har svarta täckvingar och en bred, nästan fyrkantig svart halssköld. Dess kroppslängd är 18 till 22 millimeter och detta, i kombination med dess kraftiga ben och breda halssköld, ger den ett ganska robust utseende.",
                 Artfakta: "En stor, 18–22 mm, enfärgat svart jordlöpare med relativt robust utseende och kraftiga ben. Täckvingarna är djupt längsfårade och halsskölden är påfallande bred och nästan kvadratisk, vilket ger djuret en parallellsidig kroppsform."
             },
+            Tags:[
+                {
+                    Färg: ["Svart", "Grön"], 
+                    Längd: ["12-43 mm"]
+                }
+            ],
             Observationer: [
                 { Position: { Latitude: 57.439673, Longitude: 12.194366 } }
             ]
@@ -91,6 +97,12 @@ module.exports = {
                 Wikipedia: "",
                 Artfakta: "En svart, cylindriskt byggd art som blir 8–14 mm lång. På halsskölden och täckvingarna finns tydliga gulvita hårfläckar. På täckvingarna finns dessutom två tydliga, delvis snedställda tvärband. Färgteckningen ger arten ett utseende som liknar en geting och bör vara ett tydligt exempel på s.k. Bates mimikry. Benen och antenner är gulbruna. Benen är påfallande långa, speciellt barkbenen."
             },
+            Tags:[
+                {
+                    Färg: ["Svart", "Grön"], 
+                    Längd: ["12-43 mm"]
+                }
+            ],
             Observationer: [
                 { Position: { Latitude: 56.969171, Longitude: 16.077839 } },
                 { Position: { Latitude: 56.934637, Longitude: 16.027558 } },
