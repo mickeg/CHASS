@@ -177,7 +177,7 @@ function searchData(data, cat, col, size){
     
     for(k=0; k < searchResult.length; k++){
         console.log("Skriver resultat");
-        $("#searchResult").append("<h6>" + searchResult[k].NAMN + "</h6>");
+        $("#searchResult").append("<h6><b>" + searchResult[k].NAMN + "</b> " + searchResult[k].LATIN + "</h6>");
         //$("#searchResult").append(searchResult[k].TaxonID + "</br>");
         $("#searchResult").append("<div class='row'><div class='shrink columns'><img class='thumbnail search-result-img' src='http://127.0.0.1:8080/"+searchResult[k].TaxonID+"_1.jpg'><img class='thumbnail search-result-img' src='http://127.0.0.1:8080/"+searchResult[k].TaxonID+"_2.jpg'></div><div class='columns'><p>" + searchResult[k].Kännetecken.Artfakta + "</p></div>");
         
