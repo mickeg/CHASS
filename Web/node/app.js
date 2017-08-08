@@ -109,6 +109,22 @@ app.get("/update", function (req, res) {
     });
 });
 
+app.get("/parsetxt", function (req, res) {
+    res.setHeader("Access-Control-Allow-Origin", '*');
+    fs.readFile('../artfakta.txt', 'utf8', function(err, data) {  
+        if (err) throw err;
+        var r = Object.assign({}, data.split('\r\n'));
+        r2 = r;
+
+        var descriptions = [];
+        for(i = 1; i<Object.keys(r).length; i++){
+            r2[''+i+''].data = r[''+i+''].split(';');
+            descriptions.push({TaxonID: r2[i].split(';')[0], Description: r2[i].split(';')[1]});
+        }
+        res.send(descriptions);
+    });
+});
+
 function convertToWGS84(X,Y){
     proj4.defs([
     ['WGS84', "+title=WGS 84 (long/lat) +proj=longlat +ellps=WGS84 +datum=WGS84 +units=degrees"],
