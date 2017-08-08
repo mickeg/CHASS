@@ -100,7 +100,8 @@ app.get("/parsetxt", function (req, res) {
             descriptions.Data.push(
                 {
                     TaxonID: r2[i].split(';')[0], 
-                    NAMN: "Namnfunktion ej implementerat",
+                    NAMN: r2[i].split(';')[2],
+                    LATIN: r2[i].split(';')[3],
                     Kännetecken:{Artfakta: r2[i].split(';')[1]}, 
                     Tags:{
                         Färg: [], 
