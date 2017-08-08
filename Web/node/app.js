@@ -2,16 +2,7 @@ var express = require('express');
 var path = require('path');
 var app = express();
 var fs = require('fs');
-
-//const csv = require('csvtojson');
-/*
-const converter = csv({
-            delimiter: ";"
-        }, {});
-        */
-
 var proj4 = require('proj4');
-
 var Converter = require("csvtojson").Converter;
 var converter = new Converter({delimiter: ["."]}, {delimiter: ["."]});
 var csvArray = [];
@@ -30,11 +21,6 @@ app.get('/imageDirectory', function (req, res) {
 
     fs.readdir(folder, (err, files) => {
         res.send(files);
-        /*
-        files.forEach(file => {
-            //console.log(file);
-        });
-        */
     })
 });
 
@@ -54,13 +40,7 @@ app.get('/csv', function (req, res) {
     converter.fromFile(inputFile,function(err,result){ 
          koordinater.push({a: "ej", b:"sadas"});
         res.send(result);
-       
-        //console.log(result);
     });
-    console.log(koordinater.length);
-    for(i=0;i<koordinater.length; i++){
-        console.log(i);
-    }
 });
 
 function asyncFunc(result){
@@ -72,7 +52,6 @@ app.get('/convert', function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     var X = req.query.X;
     var Y = req.query.Y;
-
     var t = convertToWGS84(X, Y);
     res.send(t);
 });
@@ -82,7 +61,7 @@ app.get('/testdata', function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     var file = require("../js/testdata.js");
 
-    console.log(file.Testdata[1].Kännetecken.Artfakta);    
+    //console.log(file.Testdata[1].Kännetecken.Artfakta);    
     res.send(file.Testdata);
 
 });
@@ -136,10 +115,7 @@ function convertToWGS84(X,Y){
 
     var source='RT90';
     var target='WGS84';
-    
-
     var result = proj4(source, target, [X, Y]);
-    //console.log("converting...");
     return result;
 }
 
@@ -154,7 +130,6 @@ function parseTags(s){
 
 function parseText(s){
         TextParametrar = {};
-        //console.log("parse "+s);
 
         var colors = findColors(s);
         var lengths = findLengths(s);
@@ -162,7 +137,7 @@ function parseText(s){
 
         TextParametrar.colors = colors;
         TextParametrar.lengths = lengths;
-        console.log("HEJ", TextParametrar.colors);
+        console.log("Colors", TextParametrar.colors);
         return TextParametrar.colors; 
 
     }
@@ -212,10 +187,9 @@ function parseText(s){
                 var measureWord = measureString.substr(0, measureString.indexOf(' '));
                 var measureValue = measureStringBefore.replace(/[^0-9\–-]/g,''); //tar bort alla icke-numeriska tecken förutom varianter av "-".
                 var measure = listofmeasurements[i];
-                //resultmeasurements.push(measure);
                 resultmeasurements.push({measure:measure.measureText, value: measureValue, measureAndValue: measureValue + " " +measure.measureText});
             }
         }
-        console.log("resmeasu",resultmeasurements);
+        //console.log("resultmeasurement",resultmeasurements);
         return resultmeasurements;
     }
