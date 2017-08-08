@@ -94,15 +94,34 @@ app.get("/parsetxt", function (req, res) {
         if (err) throw err;
         var r = Object.assign({}, data.split('\r\n'));
         r2 = r;
-
-        var descriptions = [];
+        var descriptions = {Data:[]};
+        var a = findColors( r2[10].split(';')[1]);
         for(i = 1; i<Object.keys(r).length; i++){
             r2[''+i+''].data = r[''+i+''].split(';');
-            descriptions.push({TaxonID: r2[i].split(';')[0], Description: r2[i].split(';')[1]});
+            descriptions.Data.push(
+                {
+                    TaxonID: r2[i].split(';')[0], 
+                    NAMN: "Namnfunktion ej implementerat",
+                    Kännetecken:{Artfakta: r2[i].split(';')[1]}, 
+                    Tags:{
+                        Färg: [], 
+                        Längd:[]
+                    }
+                }
+            );
         }
+        
+        for(j = 0; j<descriptions.Data.length-1;j++){
+           descriptions.Data[j].Tags.Färg = findColors(descriptions.Data[j].Kännetecken.Artfakta);
+        }
+        fs.writeFile('../js/micke.json', JSON.stringify(descriptions), 'utf8', function (err, obj) {  });
         res.send(descriptions);
     });
 });
+
+function appendColor(json){
+
+}
 
 function convertToWGS84(X,Y){
     proj4.defs([
