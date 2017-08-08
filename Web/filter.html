@@ -184,14 +184,28 @@ function searchData(data, cat, col, size){
 
         
         //$("#searchResult").append("<img src='http://127.0.0.1:8080/"+data[index].TaxonID+"_3.jpg'>" + "</br>");
-        /*
+        
         //$("#searchResult").append(searchResult[index].Kännetecken.Artfakta + "</br>");
-        var link = "<a href='ShowDetails?ID="+data[index].TaxonID+"'></a>";
-        console.log(link);
-        $("#searchResult").append("<a href='ShowDetails?ID="+data[index].TaxonID+"'>Detailer</a> </br>");
-        //var textParam = parseText(searchResult[index].Kännetecken.Artfakta);
-        //var textParam = searchResult[index].Tags[index];
-        */
+        //var link = "<a href='ShowDetails?ID="+searchResult[k].TaxonID+"'></a>";
+        //console.log(link);
+        //$("#searchResult").append("<a href='ShowDetails?ID="+searchResult[k].TaxonID+"'>Detailer</a> </br>");
+        var tags = searchResult[k].Tags;
+        console.log(tags);
+        
+            for(c = 0; c<tags.Färg.length; c++){
+                console.log(tags.Färg[c].color);
+                //$("#searchResult").append("<div background-color = '#000'>"+tags.Färg[c].color+"</div>");
+                
+                var addDiv = $('<div/>', {
+                text: " "
+                }).css({
+                'background-color': tags.Färg[c].hex
+                }).addClass("tag");
+                $("#searchResult").append(addDiv);
+                
+            }
+                
+       
         $("#searchResult").append("</br>");
         $("#searchResult").append("</br>");  
     }

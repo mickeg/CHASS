@@ -32,3 +32,9 @@ body, h1, h2, h3, h4, h5, h6 {
 .search-result-img {
     margin-right: 1rem;
 }
+
+.tag{
+    padding: 5px;
+    margin: 1px;
+    float: left;
+}
