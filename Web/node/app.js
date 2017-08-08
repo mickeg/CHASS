@@ -95,7 +95,6 @@ app.get("/parsetxt", function (req, res) {
         var r = Object.assign({}, data.split('\r\n'));
         r2 = r;
         var descriptions = {Data:[]};
-        var a = findColors( r2[10].split(';')[1]);
         for(i = 1; i<Object.keys(r).length; i++){
             r2[''+i+''].data = r[''+i+''].split(';');
             descriptions.Data.push(
