@@ -128,9 +128,6 @@
 <script>
     $( document ).ready(function() {
         $("#btnSearch").click(function(){
-
-            console.log("Searching...");
-            console.log("Searching...");
             console.log("searched for ", $( "#category" ).val());
             console.log("searched for ", $( "#color" ).val());
             console.log("searched for ", $( "#size option:selected").text());
@@ -147,7 +144,8 @@ function ajaxLoadSearch(cat, col, size){
     $("#searchResult").empty();
     $.support.cors = true;
     $.ajax({
-        url: 'http://127.0.0.1:8080/data',
+        //url: 'http://127.0.0.1:8080/data',
+        url: 'http://127.0.0.1:8080/parsetxt',
         dataType: "text",
         //crossDomain: true,
         success: function(data) {
@@ -162,12 +160,13 @@ function ajaxLoadSearch(cat, col, size){
 function searchData(data, cat, col, size){
     searchResult = [];
     console.log("DATAT",data);
-    $.each(data, function( index, value ) {
-            for (j = 0; j < data[index].Tags.Färg.length; j++) {
+    $.each(data.Data, function( index, value ) {
+        console.log("dataindex", data.Data[0].Tags);
+            for (j = 0; j < data.Data[index].Tags.Färg.length; j++) {
                 console.log("sökte på", col);
-                console.log("färg i testdatat: "+ data[index].Tags.Färg[j].color);
-                if(col == data[index].Tags.Färg[j].color){
-                    searchResult.push(data[index]);
+                console.log("färg i testdatat: "+ data.Data[index].Tags.Färg[j].color);
+                if(col == data.Data[index].Tags.Färg[j].color){
+                    searchResult.push(data.Data[index]);
                     console.log("länden:",searchResult.length);
                     break;
                 }
