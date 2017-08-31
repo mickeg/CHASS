@@ -113,6 +113,7 @@ app.get("/parsetxt", function (req, res) {
         
         for(j = 0; j<descriptions.Data.length-1;j++){
            descriptions.Data[j].Tags.Färg = findColors(descriptions.Data[j].Kännetecken.Artfakta);
+           descriptions.Data[j].Tags.Längd = findLengths(descriptions.Data[j].Kännetecken.Artfakta);
         }
         fs.writeFile('../js/micke.json', JSON.stringify(descriptions), 'utf8', function (err, obj) {  });
         res.send(descriptions);

@@ -167,7 +167,6 @@ function searchData(data, cat, col, size){
                 console.log("färg i testdatat: "+ data.Data[index].Tags.Färg[j].color);
                 if(col == data.Data[index].Tags.Färg[j].color){
                     searchResult.push(data.Data[index]);
-                    console.log("länden:",searchResult.length);
                     break;
                 }
             }
@@ -193,19 +192,28 @@ function searchData(data, cat, col, size){
         console.log(tags);
         
             for(c = 0; c<tags.Färg.length; c++){
-                console.log(tags.Färg[c].color);
-                //$("#searchResult").append("<div background-color = '#000'>"+tags.Färg[c].color+"</div>");
-                
+                console.log("tags",tags);                
                 var addDiv = $('<div/>', {
                 text: " "
                 }).css({
                 'background-color': tags.Färg[c].hex
                 }).addClass("tag");
-                $("#searchResult").append(addDiv);
-                
+                $("#searchResult").append(addDiv);                
             }
-                
-       
+
+            $("#searchResult").append("</br>");
+
+             for(l = 0; l<tags.Längd.length; l++){            
+                var lengthDiv = $('<div/>', {
+                text: " "
+                }).css({
+                'background-color': '#ccc'
+                }).addClass("length");
+                $("#searchResult").append(lengthDiv);
+                $("#searchResult").append(tags.Längd[l].measureAndValue);
+                console.log("measureandvalue", tags.Längd[l]);
+            }
+
         $("#searchResult").append("</br>");
         $("#searchResult").append("</br>");  
     }
