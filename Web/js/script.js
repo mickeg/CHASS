@@ -202,6 +202,7 @@ $( document ).ready(function() {
                 var measureValue = measureStringBefore.replace(/[^0-9\–-]/g,''); //tar bort alla icke-numeriska tecken förutom varianter av "-".
                 var measure = listofmeasurements[i];
                 //resultmeasurements.push(measure);
+                console.log("measureValue", measureValue);
                 resultmeasurements.push({measure:measure.measureText, value: measureValue, measureAndValue: measureValue + " " +measure.measureText});
             }
         }
@@ -272,7 +273,6 @@ $( document ).ready(function() {
             url: 'http://127.0.0.1:8080/imageDirectory',
             dataType: "html",
             success: function(data) {
-                //console.log(data)
                 doStuffWithImages(JSON.parse(data));
             },
             error: function(jqXHR, textStatus, errorThrown) {
