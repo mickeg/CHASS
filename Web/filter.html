@@ -190,6 +190,9 @@ function searchData(data, cat, col, size){
         //$("#searchResult").append("<a href='ShowDetails?ID="+searchResult[k].TaxonID+"'>Detailer</a> </br>");
         var tags = searchResult[k].Tags;
         console.log(tags);
+        for(i=0; i<tags.Längd.length; i++){
+            console.log("LÄNGDER", tags.Längd[i].value + ' ' + tags.Längd[i].measure);
+        }
         
             for(c = 0; c<tags.Färg.length; c++){
                 console.log("tags",tags);                
@@ -211,7 +214,7 @@ function searchData(data, cat, col, size){
                 }).addClass("length");
                 $("#searchResult").append(lengthDiv);
                 $("#searchResult").append(tags.Längd[l].measureAndValue);
-                console.log("measureandvalue", tags.Längd[l]);
+                console.log("measureandvalue", tags);
             }
 
         $("#searchResult").append("</br>");
