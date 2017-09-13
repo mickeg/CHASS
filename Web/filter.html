@@ -1,9 +1,9 @@
 <div ng-app='myapp' ng-controller="FilterController">
 
-<div class="row align-center">
-    <div class="columns small-12 medium-6 columns">
-        <div class="section">
-            <label>
+    <div class="row align-center">
+        <div class="columns small-12 medium-6 columns">
+            <div class="section">
+                <label>
                 <!--<select>
                     <option value="">Välj kategori</option>
                     <option value="insekter">Insekter</option>
@@ -22,25 +22,25 @@
                     <option  value="alger">Alger</option>
                 </select>
             </label>
+            </div>
         </div>
     </div>
-</div>
 
-<div ng-show="category!==''">
-    <h3>Filtrera</h3>
+    <div ng-show="category!==''">
+        <h3>Filtrera</h3>
 
-    <div class="row">
-    <div class="medium-6 columns">
-        <label>
+        <div class="row">
+            <div class="medium-6 columns">
+                <label>
             <input type="text" placeholder="Sök">
         </label>
+            </div>
         </div>
-    </div>
 
-    <!--Leddjur-->
-    <div class="row" ng-show="category=='leddjur'">
-        <div class="columns small-12 medium-6 columns">
-            <label>Färg
+        <!--Leddjur-->
+        <div class="row" ng-show="category=='leddjur'">
+            <div class="columns small-12 medium-6 columns">
+                <label>Färg
                 <select id="color">
                 <option value="">Välj färg</option>
                 <option value="svart">Svart</option>
@@ -52,10 +52,10 @@
 
                 </select>
             </label>
-        </div>
+            </div>
 
-        <div class="columns small-12 medium-6 columns">
-            <label>Storlek
+            <div class="columns small-12 medium-6 columns">
+                <label>Storlek
                 <select id="size">
                     <option value="">Välj storlek</option>
                     <option value="15">5-15mm</option>
@@ -66,9 +66,9 @@
                     <option value="150">71-150mm</option>
                 </select>
             </label>
-        </div>
-        <div class="columns small-12 medium-6 columns">
-            <label>Antal ben
+            </div>
+            <div class="columns small-12 medium-6 columns">
+                <label>Antal ben
                 <select id="legs">
                     <option value="">Välj antal</option>
                     <option value="15">6</option>
@@ -76,13 +76,13 @@
                     <option value="35">>10</option>
                 </select>
             </label>
+            </div>
         </div>
-    </div>
 
-    <!--Däggdjur-->
-    <div class="row" ng-show="category=='däggdjur'">
-        <div class="columns small-12 medium-6 columns">
-            <label>Huvudsaklig miljö
+        <!--Däggdjur-->
+        <div class="row" ng-show="category=='däggdjur'">
+            <div class="columns small-12 medium-6 columns">
+                <label>Huvudsaklig miljö
                 <select>
                     <option value="">Välj miljö</option>
                     <option value="land">Mark</option>
@@ -90,10 +90,10 @@
                     <option value="träd">Träd</option>
                 </select>
             </label>
-        </div>
+            </div>
 
-        <div class="columns small-12 medium-6 columns">
-            <label>Typ
+            <div class="columns small-12 medium-6 columns">
+                <label>Typ
                 <select>
                     <option value="">Välj typ</option>
                     <option value="rovdjur">Rovdjur</option>
@@ -101,10 +101,10 @@
                     <option value="allätare">Allätare</option>
                 </select>
             </label>
-        </div>
+            </div>
 
-        <div class="columns small-12 medium-6 columns">
-            <label>Storlek
+            <div class="columns small-12 medium-6 columns">
+                <label>Storlek
                 <select>
                     <option value="">Välj storlek</option>
                     <option value="1"><1kg</option>
@@ -115,113 +115,112 @@
                     <option value="150">>25kg</option>
                 </select>
             </label>
+            </div>
         </div>
     </div>
-</div>
-<div class="row" ng-show="category!==''">
-    <div class="columns clearfix">
-        <a class="button large float-right" id="btnSearch" href="#">Sök</a>
+    <div class="row" ng-show="category!==''">
+        <div class="columns clearfix">
+            <a class="button large float-right" id="btnSearch" href="#">Sök</a>
+        </div>
+
     </div>
 
-</div>
+    <script>
+        $(document).ready(function () {
+            $("#btnSearch").click(function () {
+                console.log("searched for ", $("#category").val());
+                console.log("searched for ", $("#color").val());
+                console.log("searched for ", $("#size option:selected").text());
+                var cat = $("#category").val();
+                var col = $("#color").val();
+                var size = $("#size option:selected").text();
 
-<script>
-    $( document ).ready(function() {
-        $("#btnSearch").click(function(){
-            console.log("searched for ", $( "#category" ).val());
-            console.log("searched for ", $( "#color" ).val());
-            console.log("searched for ", $( "#size option:selected").text());
-            var cat = $( "#category" ).val();
-            var col = $( "#color" ).val();
-            var size = $( "#size option:selected").text();
-
-            ajaxLoadSearch(cat, col, size);
+                ajaxLoadSearch(cat, col, size);
+            });
         });
-    });
 
 
-function ajaxLoadSearch(cat, col, size){
-    $("#searchResult").empty();
-    $.support.cors = true;
-    $.ajax({
-        //url: 'http://127.0.0.1:8080/data',
-        url: 'http://127.0.0.1:8080/parsetxt',
-        dataType: "text",
-        //crossDomain: true,
-        success: function(data) {
-            searchData(JSON.parse(data), cat, col, size);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log('error ' + textStatus + " " + errorThrown);
-        }
-    });
-}
-
-function searchData(data, cat, col, size){
-    searchResult = [];
-    console.log("DATAT",data);
-    $.each(data.Data, function( index, value ) {
-        console.log("dataindex", data.Data[0].Tags);
-            for (j = 0; j < data.Data[index].Tags.Färg.length; j++) {
-                console.log("sökte på", col);
-                console.log("färg i testdatat: "+ data.Data[index].Tags.Färg[j].color);
-                if(col == data.Data[index].Tags.Färg[j].color){
-                    searchResult.push(data.Data[index]);
-                    break;
+        function ajaxLoadSearch(cat, col, size) {
+            $("#searchResult").empty();
+            $.support.cors = true;
+            $.ajax({
+                //url: 'http://127.0.0.1:8080/data',
+                url: 'http://127.0.0.1:8080/parsetxt',
+                dataType: "text",
+                //crossDomain: true,
+                success: function (data) {
+                    searchData(JSON.parse(data), cat, col, size);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log('error ' + textStatus + " " + errorThrown);
                 }
-            }
-    });
-
-    console.log(searchResult);
-    
-    for(k=0; k < searchResult.length; k++){
-        console.log("Skriver resultat");
-        $("#searchResult").append("<h6><b>" + searchResult[k].NAMN + "</b> " + searchResult[k].LATIN + "</h6>");
-        //$("#searchResult").append(searchResult[k].TaxonID + "</br>");
-        $("#searchResult").append("<div class='row'><div class='shrink columns'><img class='thumbnail search-result-img' src='http://127.0.0.1:8080/"+searchResult[k].TaxonID+"_1.jpg'><img class='thumbnail search-result-img' src='http://127.0.0.1:8080/"+searchResult[k].TaxonID+"_2.jpg'></div><div class='columns'><p>" + searchResult[k].Kännetecken.Artfakta + "</p></div>");
-        
-
-        
-        //$("#searchResult").append("<img src='http://127.0.0.1:8080/"+data[index].TaxonID+"_3.jpg'>" + "</br>");
-        
-        //$("#searchResult").append(searchResult[index].Kännetecken.Artfakta + "</br>");
-        //var link = "<a href='ShowDetails?ID="+searchResult[k].TaxonID+"'></a>";
-        //console.log(link);
-        //$("#searchResult").append("<a href='ShowDetails?ID="+searchResult[k].TaxonID+"'>Detailer</a> </br>");
-        var tags = searchResult[k].Tags;
-        console.log(tags);
-        for(i=0; i<tags.Längd.length; i++){
-            console.log("LÄNGDER", tags.Längd[i].value + ' ' + tags.Längd[i].measure);
+            });
         }
-        
-            for(c = 0; c<tags.Färg.length; c++){
-                console.log("tags",tags);                
-                var addDiv = $('<div/>', {
-                text: " "
-                }).css({
-                'background-color': tags.Färg[c].hex
-                }).addClass("tag");
-                $("#searchResult").append(addDiv);                
+
+        function searchData(data, cat, col, size) {
+            searchResult = [];
+            $.each(data.Data, function (index, value) {
+                for (j = 0; j < data.Data[index].Tags.Färg.length; j++) {
+                    console.log("sökte på", col);
+                    console.log("färg i testdatat: " + data.Data[index].Tags.Färg[j].color);
+                    if (col == data.Data[index].Tags.Färg[j].color) {
+                        searchResult.push(data.Data[index]);
+                        break;
+                    }
+                }
+            });
+
+            console.log(searchResult);
+
+            for (k = 0; k < searchResult.length; k++) {
+                console.log("Skriver resultat");
+                $("#searchResult").append("<h6><b>" + searchResult[k].NAMN + "</b> " + searchResult[k].LATIN + "</h6>");
+                //$("#searchResult").append(searchResult[k].TaxonID + "</br>");
+                $("#searchResult").append("<div class='row'><div class='shrink columns'><img class='thumbnail search-result-img' src='http://127.0.0.1:8080/" + searchResult[k].TaxonID + "_1.jpg'><img class='thumbnail search-result-img' src='http://127.0.0.1:8080/" + searchResult[k].TaxonID + "_2.jpg'></div><div class='columns'><p>" + searchResult[k].Kännetecken.Artfakta + "</p></div>");
+
+
+
+                //$("#searchResult").append("<img src='http://127.0.0.1:8080/"+data[index].TaxonID+"_3.jpg'>" + "</br>");
+
+                //$("#searchResult").append(searchResult[index].Kännetecken.Artfakta + "</br>");
+                //var link = "<a href='ShowDetails?ID="+searchResult[k].TaxonID+"'></a>";
+                //console.log(link);
+                //$("#searchResult").append("<a href='ShowDetails?ID="+searchResult[k].TaxonID+"'>Detailer</a> </br>");
+                var tags = searchResult[k].Tags;
+                console.log(tags);
+                for (i = 0; i < tags.Längd.length; i++) {
+                    console.log("LÄNGDER", tags.Längd[i].value + ' ' + tags.Längd[i].measure);
+                }
+
+                for (c = 0; c < tags.Färg.length; c++) {
+                    console.log("tags", tags);
+                    var addDiv = $('<div/>', {
+                        text: " "
+                    }).css({
+                        'background-color': tags.Färg[c].hex
+                    }).addClass("tag");
+                    $("#searchResult").append(addDiv);
+                }
+
+                $("#searchResult").append("</br>");
+
+                for (l = 0; l < tags.Längd.length; l++) {
+                    var lengthDiv = $('<div/>', {
+                        text: " "
+                    }).css({
+                        'background-color': '#ccc'
+                    }).addClass("length");
+                    $("#searchResult").append(lengthDiv);
+                    $("#searchResult").append(tags.Längd[l].measureAndValue);
+                    console.log("measureandvalue", tags);
+                }
+
+                $("#searchResult").append("</br>");
+                $("#searchResult").append("</br>");
             }
 
-            $("#searchResult").append("</br>");
 
-             for(l = 0; l<tags.Längd.length; l++){            
-                var lengthDiv = $('<div/>', {
-                text: " "
-                }).css({
-                'background-color': '#ccc'
-                }).addClass("length");
-                $("#searchResult").append(lengthDiv);
-                $("#searchResult").append(tags.Längd[l].measureAndValue);
-                console.log("measureandvalue", tags);
-            }
 
-        $("#searchResult").append("</br>");
-        $("#searchResult").append("</br>");  
-    }
-        
-      
-    
-}
-</script>
+        }
+
+    </script>
