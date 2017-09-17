@@ -16,7 +16,10 @@
     "url": "https://github.com/mickeg/H4S/issues"
   },
   "homepage": "https://github.com/mickeg/H4S#readme",
-    "devDependencies": {
+  "devDependencies": {
     "foundation-sites": "6.2.3"
+  },
+  "dependencies": {
+    "nodemon": "^1.12.0"
   }
 }

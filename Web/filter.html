@@ -178,14 +178,6 @@
                 //$("#searchResult").append(searchResult[k].TaxonID + "</br>");
                 $("#searchResult").append("<div class='row'><div class='shrink columns'><img class='thumbnail search-result-img' src='http://127.0.0.1:8080/" + searchResult[k].TaxonID + "_1.jpg'><img class='thumbnail search-result-img' src='http://127.0.0.1:8080/" + searchResult[k].TaxonID + "_2.jpg'></div><div class='columns'><p>" + searchResult[k].Kännetecken.Artfakta + "</p></div>");
 
-
-
-                //$("#searchResult").append("<img src='http://127.0.0.1:8080/"+data[index].TaxonID+"_3.jpg'>" + "</br>");
-
-                //$("#searchResult").append(searchResult[index].Kännetecken.Artfakta + "</br>");
-                //var link = "<a href='ShowDetails?ID="+searchResult[k].TaxonID+"'></a>";
-                //console.log(link);
-                //$("#searchResult").append("<a href='ShowDetails?ID="+searchResult[k].TaxonID+"'>Detailer</a> </br>");
                 var tags = searchResult[k].Tags;
                 console.log(tags);
                 for (i = 0; i < tags.Längd.length; i++) {
@@ -211,7 +203,12 @@
                         'background-color': '#ccc'
                     }).addClass("length");
                     $("#searchResult").append(lengthDiv);
-                    $("#searchResult").append(tags.Längd[l].measureAndValue);
+                    //$("#searchResult").append(tags.Längd[l].measureAndValue);
+                    for(m = 0; m<= (tags.Längd[l].measureAndValue.length/2)-2; m += 2){
+                        $("#searchResult").append(tags.Längd[l].valueList[m] + " - " + tags.Längd[l].valueList[m+1]);
+                        $("#searchResult").append("</br>");
+                    }
+                    $("#searchResult").append(tags.Längd[l].valueList);
                     console.log("measureandvalue", tags);
                 }
 

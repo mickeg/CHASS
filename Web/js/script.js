@@ -202,6 +202,7 @@ $( document ).ready(function() {
                 var measureValue = measureStringBefore.replace(/[^0-9\–-]/g,''); //tar bort alla icke-numeriska tecken förutom varianter av "-".
                 var measure = listofmeasurements[i];
                 //resultmeasurements.push(measure);
+                alert();
                 console.log("measureValue", measureValue);
                 resultmeasurements.push({measure:measure.measureText, value: measureValue, measureAndValue: measureValue + " " +measure.measureText});
             }
