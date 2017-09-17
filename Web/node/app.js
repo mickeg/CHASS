@@ -8,7 +8,9 @@ var converter = new Converter({delimiter: ["."]}, {delimiter: ["."]});
 var csvArray = [];
 
 app.use(express.static(__dirname + '/../php/img'));
-app.listen(8080);
+app.listen(8080, function() {
+    console.log("CHASS Service listening on port 8080");
+  });
 
 app.get('/image', function (req, res) {
     var filepath = path.resolve(__dirname + "/../php/img/"+req.query.taxonId+"_"+req.query.image+".jpg");
@@ -110,7 +112,6 @@ app.get("/parsetxt", function (req, res) {
                 }
             );
         }
-        
         for(j = 0; j<descriptions.Data.length-1;j++){
            descriptions.Data[j].Tags.Färg = findColors(descriptions.Data[j].Kännetecken.Artfakta);
            descriptions.Data[j].Tags.Längd = findLengths(descriptions.Data[j].Kännetecken.Artfakta);
@@ -205,11 +206,14 @@ function parseText(s){
                 var measureString = s.substr(measurePos);
                 var measureStringBefore = s.substr(measurePos-5);   //Magiskt nummer 5... backar vi 5 steg från mm "brukar" det vara t.ex. "12-20 "
                 var measureWord = measureString.substr(0, measureString.indexOf(' '));
-                var measureValue = measureStringBefore.replace(/[^0-9\–-]/g,''); //tar bort alla icke-numeriska tecken förutom varianter av "-".
+                var measureValue = measureStringBefore.replace(/[^0-9\¤\–-]/g,''); //tar bort alla icke-numeriska tecken förutom varianter av "-".
+                var regex = /(\d+)/g;
+                var resultList = measureStringBefore.match(regex);
                 var measure = listofmeasurements[i];
-                resultmeasurements.push({measure:measure.measureText, value: measureValue, measureAndValue: measureValue + " " +measure.measureText});
+                console.log(measureValue);
+                resultmeasurements.push({measure:measure.measureText, value: measureValue, measureAndValue: measureValue + " " +measure.measureText, valueList: resultList});
             }
         }
-        //console.log("resultmeasurement",resultmeasurements);
+        console.log("resultmeasurement",resultmeasurements);
         return resultmeasurements;
     }
