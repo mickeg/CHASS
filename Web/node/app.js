@@ -109,7 +109,7 @@ app.get("/parsetxt", function (req, res) {
                         Färg: [],
                         Längd: []
                     },
-                    Coordinates: { lat: getRandomInRange(50, 60, 6), long: getRandomInRange(10, 20, 6) }
+                    Coordinates: { lat: getRandomInRange(59, 59.5, 6), long: getRandomInRange(17.5, 18.5, 6) }
                 }
             );
         }
