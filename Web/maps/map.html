@@ -12,7 +12,11 @@
        * element that contains the map. */
 
     #map {
-      height: 100%;
+      height: 50%;
+    }
+
+    #console{
+      padding: 10px;
     }
 
     /* Optional: Makes the sample page fill the window. */
@@ -28,6 +32,7 @@
 
 <body>
   <div id="map"></div>
+  <div id="console"></div>
   <script>
     var map;
     var MAP_RADIUS = 2000;
@@ -99,6 +104,7 @@
                 var distance = google.maps.geometry.spherical.computeDistanceBetween(myPosition, position);
                 if(distance < MAP_RADIUS){
                   console.log("INSIDE RADIUS: "+ v.NAMN);
+                  $("#console").append("<p><b>"+v.NAMN+"</b></p><p>"+v.Kännetecken.Artfakta+"</p>");
                 }
 
                 var marker = new google.maps.Marker({
