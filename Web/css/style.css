@@ -2,6 +2,23 @@ html {
 
 }
 
+#map {
+    height: 60%;
+  }
+
+  #console{
+    padding: 10px;
+  }
+
+  /* Optional: Makes the sample page fill the window. */
+
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
 body {
     background: #F7F7F7;
     font-size: 1rem;
