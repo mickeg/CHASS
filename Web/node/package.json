@@ -1,23 +1,28 @@
 {
-  "name": "h4s",
-  "version": "1.0.0",
-  "description": "dynamisk uppslagning av arter",
+  "name": "CHASS",
+  "version": "0.4.0",
+  "description": "Explode the environment",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mickeg/H4S.git"
+    "url": "git+https://github.com/mickeg/CHASS.git"
   },
-  "author": "Team CHASS",
+  "author": "Mikael Gerhardsson, Peter Jönsson, Sara Ingmar, Andreas Richnau",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mickeg/H4S/issues"
+    "url": "https://github.com/mickeg/CHASS/issues"
   },
-  "homepage": "https://github.com/mickeg/H4S#readme",
+  "homepage": "https://github.com/mickeg/CHASS#readme",
   "devDependencies": {
-    "foundation-sites": "6.2.3"
+    "csvtojson": "^1.1.9",
+    "express": "^4.16.2",
+    "foundation-sites": "6.2.3",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "proj4": "^2.4.4"
   },
   "dependencies": {
     "nodemon": "^1.12.0"
